@@ -75,7 +75,7 @@ with open(file_to_load) as election_data:
             votes_per_county_dict[county_name] = 0
 
          # 5: Add a vote to that county's vote count.
-        votes_per_county_dict[county_name] + 1
+        votes_per_county_dict[county_name] += 1
     
 # print(votes_per_county_dict[county_name])
 
