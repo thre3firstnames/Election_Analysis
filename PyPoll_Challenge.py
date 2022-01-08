@@ -19,7 +19,7 @@ candidate_votes = {}
 
 # 1: Create a county list and county votes dictionary.
 county_list = []
-count_per_county = {}
+votes_per_county_dict = {}
 
 
 # Track the winning candidate, vote count and percentage
@@ -72,12 +72,12 @@ with open(file_to_load) as election_data:
             county_list.append(county_name)
 
             # 4c: Begin tracking the county's vote count.
-            count_per_county[county_name] = 0
+            votes_per_county_dict[county_name] = 0
 
          # 5: Add a vote to that county's vote count.
-        count_per_county[county_name] =+ 1
-
-
+        votes_per_county_dict[county_name] + 1
+    
+# print(votes_per_county_dict[county_name])
 
 # Save the results to our text file.
 with open(file_to_save, "w") as txt_file:
@@ -94,9 +94,9 @@ with open(file_to_save, "w") as txt_file:
     txt_file.write(election_results)
 
     # 6a: Write a for loop to get the county from the county dictionary.
-    for county in count_per_county:
+    for county_name in votes_per_county_dict:
         # 6b: Retrieve the county vote count.
-        county_votes=count_per_county.get(county)
+        county_votes=votes_per_county_dict.get(county_name)
         # 6c: Calculate the percentage of votes for the county.
         county_vote_percentage = float(county_votes) / float(total_votes) * 100
         # Definied county Results variable
