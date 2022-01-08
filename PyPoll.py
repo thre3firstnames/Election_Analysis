@@ -58,6 +58,7 @@ with open(file_to_load) as election_data:
     for row in file_reader:
         #Add to total vote count
         total_votes +=1
+        
 
     #PGet Candidate Names
         candidate_name = row[2]
@@ -69,6 +70,18 @@ with open(file_to_load) as election_data:
             candidate_votes[candidate_name]=0
             #increase votes by one with each instance of candidate name
         candidate_votes[candidate_name] += 1
+
+#save results to text file
+with open(file_to_save, "w") as txt_file:
+    election_results = (
+        f"\nElection Results\n"
+        f"-------------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"-------------------------\n")
+    print(election_results, end = "")
+    #save final vote count to text file
+    txt_file.write(election_results)
+
 
     #loop through candidate options to get names and vote percentage
     for candidate_name in candidate_votes:
@@ -89,7 +102,15 @@ with open(file_to_load) as election_data:
             winning_candidate = candidate_name
 
         #print to terminal
-        print(f"{candidate_name}:  {vote_percentage:.1f}% ({votes:,})\n")
+        # print(f"{candidate_name}:  {vote_percentage:.1f}% ({votes:,})\n")
+
+        #Candidate results details 
+        candidate_results = (f"{candidate_name}:  {vote_percentage:.1f}% ({votes:,})\n")
+        print(candidate_results)
+        #write the results to the textfile
+        txt_file.write(candidate_results)
+
+
 
 #format winning candidate summary for output
     winning_candidate_summary = (    
@@ -98,7 +119,9 @@ with open(file_to_load) as election_data:
     f"Winning Vote Count: {winning_count:,}\n"
     f"Winning Percentage: {winning_percentage:.1f}%\n"
     f"-------------------------\n")
-print(winning_candidate_summary)
+    #Save winner info to the text file
+    txt_file.write(winning_candidate_summary)
+    print(winning_candidate_summary)
 
 
 
