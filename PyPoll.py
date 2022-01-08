@@ -33,6 +33,10 @@ file_to_load = os.path.join("Resources", "election_results.csv")
 #assign a variable for the file to save and the path
 file_to_save = os.path.join("Analysis", "election_analysis.txt")
 
+#Declare vote counter
+total_votes=0
+candidate_options = []
+
 #open the results and read
 with open(file_to_load) as election_data:
     #To Do: read and analyze the data here.
@@ -40,12 +44,27 @@ with open(file_to_load) as election_data:
  
     #print header row
     headers = next(file_reader)
-    print(headers)
- 
-    #   # Print each row in the CSV file.
-    # for row in file_reader:
-    #     print(row)
+    
+    # Print each row in the CSV file.
+    for row in file_reader:
+        #Add to total vote count
+        total_votes +=1
 
+    #PGet Candidate Names
+        candidate_name = row[2]
+    #Add Candidate Names to options list with only unique values
+        if candidate_name not in candidate_options:
+            #Add unique names to list
+            candidate_options.append(candidate_name)
+
+#Print Candidate list
+print(candidate_options)
+
+
+
+
+# #Print total votes
+# print(total_votes)
 
 
 
