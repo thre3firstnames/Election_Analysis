@@ -35,7 +35,16 @@ file_to_save = os.path.join("Analysis", "election_analysis.txt")
 
 #Declare vote counter
 total_votes=0
+
+#Candidate Options and votes
 candidate_options = []
+#declare empty vote dictionary
+candidate_votes = {}
+
+# Winning Candidate and Winning Count Tracker
+winning_candidate = ""
+winning_count = 0
+winning_percentage = 0
 
 #open the results and read
 with open(file_to_load) as election_data:
@@ -56,15 +65,41 @@ with open(file_to_load) as election_data:
         if candidate_name not in candidate_options:
             #Add unique names to list
             candidate_options.append(candidate_name)
+            #track the vote count per candidate
+            candidate_votes[candidate_name]=0
+            #increase votes by one with each instance of candidate name
+        candidate_votes[candidate_name] += 1
 
-#Print Candidate list
-print(candidate_options)
+    #loop through candidate options to get names and vote percentage
+    for candidate_name in candidate_votes:
+    #retrieve voates of the candidate from candidate_votes dictionary
+        votes = candidate_votes[candidate_name]
+    #calculate percentage of the vote cout
+        vote_percentage = float(votes) / float(total_votes) * 100
+    #print each candidate and the percentage of the votes using f-string formatting
+        # print(f"{candidate_name}: recieved {vote_percentage:.1f}% fo the total vote.")
+    
+        #determine the winning vote cound and candidate
+        #determine if the vote count that was caldulated is greater than the winning count
+        if (votes > winning_count) and (vote_percentage > winning_percentage):
+        #if the vote count IS greater than the winning count and the percentage is greater than the winning percentage, set the winning count equal to votes and percetnage equal to percentage
+            winning_count = votes
+            winning_percentage = vote_percentage
+        #set the winning count equal to the winning candidate name in the for loop
+            winning_candidate = candidate_name
 
+        #print to terminal
+        print(f"{candidate_name}:  {vote_percentage:.1f}% ({votes:,})\n")
 
+#format winning candidate summary for output
+    winning_candidate_summary = (    
+    f"-------------------------\n"
+    f"Winner: {winning_candidate}\n"
+    f"Winning Vote Count: {winning_count:,}\n"
+    f"Winning Percentage: {winning_percentage:.1f}%\n"
+    f"-------------------------\n")
+print(winning_candidate_summary)
 
-
-# #Print total votes
-# print(total_votes)
 
 
 
