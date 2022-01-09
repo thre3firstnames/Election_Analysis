@@ -20,4 +20,6 @@ The following list contains the results of the election, based on the data outpu
 ![cmd_output.png](/Resources/cmd_output.png)
 
 ## Summary: 
-In a summary statement, provide a business proposal to the election commission on how this script can be used—with some modifications—for any election. Give at least two examples of how this script can be modified to be used for other elections.
+With minimal modifications, any election can use this script. 
+-With additional data regarding the voting method (or further insight into the *Ballot ID* structure), an analyst could provide statistics for the type of vote cast in each county in the precinct. This data could help predict and inform the voting habits of voters within each county. 
+-Replacing **county** values for those **states** who do not use a ranking/weighted system(currently only Alaska & Maine), this program would need almost no modification at all to operate on a national level for the allocation of electoral college votes. 
